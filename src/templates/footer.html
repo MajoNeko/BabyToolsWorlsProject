@@ -1,8 +1,12 @@
-<div id="footer" class="text-center" style="margin-bottom: 2rem;">
-    <hr />
-    BabyToolsWorld &nbsp;
-    &copy; Copyright 2025 by&nbsp;
-    {% block author %}
-    {{ author | default:"YOU" }}
-    {% endblock %}
+
+
+<div id="footer" class="text-center">
+    <p class="bt-footer-text">
+        <strong>BabyToolsWorld</strong>
+        &nbsp;&copy; Copyright {% now "Y" %} by&nbsp;
+        {% block author %}
+        {{ author|default:"YOU" }}
+        {% endblock %}
+    </p>
 </div>
+ 
