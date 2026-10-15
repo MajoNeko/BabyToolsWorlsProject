@@ -8,7 +8,7 @@ The project was developed for educational purposes only and therefore has no cla
 
 ## Prerequisites
 
-In order to seamlessly interact with the repository and the software it contains you need to following tools preinstalled:
+In order to seamlessly interact with the repository and the software it contains you need the following tools preinstalled:
 
 - Python Interpreter
 - OCI-Compliant Container Engine (e.g. podman, docker, etc.)
@@ -46,7 +46,7 @@ In order to quickly get started with the project follow these steps:
 
 The project is modularized into several apps:
 
-- `products`: Manages product listings and categories
+- `products`: Manages product listings, tags, and categories
 - `users`: Handles user authentication and registration.
 
 Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
