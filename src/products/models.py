@@ -22,7 +22,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
 
-# tag model for products
+# tag model to be used on products
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
