@@ -1,0 +1,362 @@
+/* ==========================================================================
+   BabyTools World – base styles
+   Soft, neutral pastel palette
+   ========================================================================== */
+
+:root {
+  /* Neutrals */
+  --bt-bg: #f8f7f4;          /* page background */
+  --bt-surface: #ffffff;     /* cards, panels */
+  --bt-oat: #ece6dd;         /* navbar, footer */
+  --bt-oat-deep: #ddd5c9;    /* borders, hover on oat */
+  --bt-ink: #4a4540;         /* main text */
+  --bt-ink-soft: #7a736b;    /* secondary text */
+
+  /* Pastels */
+  --bt-sage: #cfdccb;
+  --bt-sage-deep: #b9cdb4;
+  --bt-blue: #d4e2ec;
+  --bt-blue-deep: #bdd2e1;
+  --bt-blush: #f1d9d6;
+  --bt-blush-deep: #e7c3be;
+
+  /* Focus ring */
+  --bt-focus: #8fa9bd;
+}
+
+/* --- Layout ------------------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bt-bg);
+  color: var(--bt-ink);
+}
+
+a {
+  color: #5f7f98;
+}
+
+a:hover {
+  color: #4a667b;
+}
+
+/* --- Navbar ------------------------------------------------------------- */
+
+.bt-navbar {
+  background-color: var(--bt-oat);
+  border-bottom: 1px solid var(--bt-oat-deep);
+}
+
+.bt-navbar .navbar-brand {
+  color: var(--bt-ink);
+  font-weight: 600;
+}
+
+.bt-navbar .navbar-brand i {
+  color: #a8625c;
+}
+
+.bt-navbar .nav-link {
+  color: var(--bt-ink-soft);
+}
+
+.bt-navbar .nav-link:hover,
+.bt-navbar .nav-link:focus {
+  color: var(--bt-ink);
+}
+
+.bt-navbar .nav-link.active {
+  color: var(--bt-ink);
+  font-weight: 500;
+}
+
+/* Hamburger icon recoloured for a light navbar */
+.bt-navbar .navbar-toggler {
+  border-color: var(--bt-oat-deep);
+}
+
+.bt-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234a4540' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- Buttons ------------------------------------------------------------ */
+
+.btn-space {
+  margin-right: 15px;
+}
+
+.btn-oat,
+.btn-sage,
+.btn-blue,
+.btn-blush {
+  color: var(--bt-ink);
+  border: 1px solid transparent;
+}
+
+.btn-oat {
+  background-color: var(--bt-surface);
+  border-color: var(--bt-oat-deep);
+}
+
+.btn-oat:hover,
+.btn-oat:focus {
+  background-color: var(--bt-bg);
+  color: var(--bt-ink);
+}
+
+.btn-sage {
+  background-color: var(--bt-sage);
+}
+
+.btn-sage:hover,
+.btn-sage:focus {
+  background-color: var(--bt-sage-deep);
+  color: var(--bt-ink);
+}
+
+.btn-blue {
+  background-color: var(--bt-blue);
+}
+
+.btn-blue:hover,
+.btn-blue:focus {
+  background-color: var(--bt-blue-deep);
+  color: var(--bt-ink);
+}
+
+.btn-blush {
+  background-color: var(--bt-blush);
+}
+
+.btn-blush:hover,
+.btn-blush:focus {
+  background-color: var(--bt-blush-deep);
+  color: var(--bt-ink);
+}
+
+/* Visible keyboard focus for all interactive elements */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.navbar-brand:focus-visible,
+.navbar-toggler:focus-visible {
+  outline: 2px solid var(--bt-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* The logout form only exists so the Sign Out button can submit it */
+#logout {
+  display: none;
+}
+
+/* --- Footer ------------------------------------------------------------- */
+
+.bt-footer {
+  background-color: var(--bt-oat);
+  border-top: 1px solid var(--bt-oat-deep);
+  color: var(--bt-ink-soft);
+  padding: 1.5rem 0 2rem;
+}
+
+.bt-footer a {
+  color: var(--bt-ink);
+}
+
+.bt-footer-text {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.bt-footer-text strong {
+  color: var(--bt-ink);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Shared components (cards, forms, stars, muted text)
+   ========================================================================== */
+
+.text-muted {
+  color: var(--bt-ink-soft) !important;
+}
+
+.bt-card,
+.card {
+  background-color: var(--bt-surface);
+  border: 1px solid var(--bt-oat-deep);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(74, 69, 64, 0.08);
+}
+
+.card-footer {
+  background-color: var(--bt-bg);
+  border-top: 1px solid var(--bt-oat-deep);
+}
+
+.form-control {
+  background-color: var(--bt-surface);
+  border-color: var(--bt-oat-deep);
+  color: var(--bt-ink);
+}
+
+.form-control:focus {
+  border-color: var(--bt-focus);
+  box-shadow: 0 0 0 0.2rem rgba(143, 169, 189, 0.25);
+}
+
+/* Rating stars (display) */
+.star-on {
+  color: #e3b85f;
+}
+
+.star-off {
+  color: var(--bt-oat-deep);
+}
+
+/* ==========================================================================
+   Product detail page
+   ========================================================================== */
+
+/* Tags */
+.bt-tags-title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.bt-tag {
+  display: inline-block;
+  background-color: var(--bt-blue);
+  color: var(--bt-ink);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-size: 0.85rem;
+  margin: 0 0.35rem 0.35rem 0;
+}
+
+/* Reviews list */
+.bt-review {
+  border-bottom: 1px solid var(--bt-oat-deep);
+}
+
+/* Star picker (review form) */
+.rating-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 0.35rem;
+}
+
+.rating-group input {
+  display: none;
+}
+
+.rating-group label {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--bt-oat-deep);
+  transition: color 0.2s;
+  line-height: 1;
+  margin: 0;
+}
+
+.rating-group input:checked ~ label,
+.rating-group label:hover,
+.rating-group label:hover ~ label {
+  color: #e3b85f;
+}
+
+.rating-hint {
+  font-size: 0.75rem;
+  color: var(--bt-ink-soft);
+  margin-top: -2px;
+}
+
+.form-helper {
+  font-size: 0.7rem;
+  color: var(--bt-ink-soft);
+}
+
+.guest-fields {
+  background: #f3efe9;
+  border: 1px solid var(--bt-oat-deep);
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.75rem 0.25rem;
+}
+
+/* Related products */
+.related-img {
+  height: 160px;
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.related-title {
+  font-size: 0.9rem;
+}
+
+.related-title a {
+  color: var(--bt-ink);
+  text-decoration: none;
+}
+
+.related-title a:hover {
+  text-decoration: underline;
+}
+
+.related-desc {
+  font-size: 0.7rem;
+}
+
+
+/* ==========================================================================
+   Product listing page
+   ========================================================================== */
+ 
+/* Category sidebar */
+.bt-sidebar .list-group-item {
+  background-color: var(--bt-surface);
+  border-color: var(--bt-oat-deep);
+  color: var(--bt-ink);
+}
+ 
+.bt-sidebar .list-group-item-action:hover,
+.bt-sidebar .list-group-item-action:focus {
+  background-color: var(--bt-oat);
+  color: var(--bt-ink);
+}
+ 
+.bt-sidebar .list-group-item.active {
+  background-color: var(--bt-sage);
+  border-color: var(--bt-sage-deep);
+  color: var(--bt-ink);
+  font-weight: 600;
+}
+ 
+/* Product cards */
+.row > .product-card {
+  width: 18rem;
+  margin: 1rem 0.25rem 0;
+  padding: 0;
+}
+ 
+.product-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-top-left-radius: calc(0.5rem - 1px);
+  border-top-right-radius: calc(0.5rem - 1px);
+}
+ 
+.product-card .card-title a {
+  color: var(--bt-ink);
+  text-decoration: none;
+}
+ 
+.product-card .card-title a:hover {
+  text-decoration: underline;
+}

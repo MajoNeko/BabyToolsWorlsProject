@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Comment, Product
+from .models import Category, Comment, Product, Tag
 
 
 @admin.register(Category)
@@ -20,3 +20,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ("product", "user", "guest_name", "rating", "created_at")
     list_filter = ("rating", "created_at")
     search_fields = ("guest_name", "guest_email", "text", "user__username")
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    """Add Tag administration to the admin panel, allow admin to create, edit, and delete tags"""
+
+    list_display = ("name", "created_at")

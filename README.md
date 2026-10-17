@@ -6,9 +6,30 @@ The project was developed for educational purposes only and therefore has no cla
 > [!NOTE]
 > This project assumes you already know the python programming language
 
+## Table of Contents
+
+- [Introduction](#baby-tools-world)
+- [Prerequisites](#prerequisites)
+- [Quickstart](#quickstart)
+- [Project Structure](#project-structure)
+- [Apps Overview](#apps-overview)
+- [Usage](#usage)
+  - [Configuration](#configuration)
+  - [Running the linting tools](#running-the-linting-tools)
+    - [When to run this](#when-to-run-this)
+    - [Configuration](#configuration)
+- [Testing](#testing)
+  - [Running tests](#running-tests)
+- [Running with a WSGI Server](#running-with-a-wsgi-server)
+- [Seeding the application with data](#seeding-the-application-with-data)
+- [Containerization](#containerization)
+  - [Build an image](#build-an-image)
+  - [Pushing an image to a VM](#pushing-an-image-to-a-vm)
+  - [Run a container](#run-a-container)
+
 ## Prerequisites
 
-In order to seamlessly interact with the repository and the software it contains you need to following tools preinstalled:
+In order to seamlessly interact with the repository and the software it contains you need the following tools preinstalled:
 
 - Python Interpreter
 - OCI-Compliant Container Engine (e.g. podman, docker, etc.)
@@ -19,21 +40,22 @@ In order to seamlessly interact with the repository and the software it contains
 In order to quickly get started with the project follow these steps:
 
 1. clone the repository
-1. nagivate to the repository
-1. (optional) create a virtual environment with `python -m venv my-venv`
+2. nagivate to the repository
+3. (optional) create a virtual environment with `python -m venv my-venv`
     1. activate the virtual environment:
         - on Windows run: `my-venv/Scripts/activate`
         - on MacOS/Linux run: `source my-venv/bin/activate`
-1. install the project dependencies with `pip install -r requirements.txt`
-1. configure required application environment variables
+4. install the project dependencies with `pip install -r requirements.txt`
+5. configure required application environment variables
     - `cp example.env .env`
-1. go to the `src` directory via `cd src`
-1. prepare the database (create and apply migrations)
+6. go to the `src` directory via `cd src`
+7. prepare the database (create and apply migrations)
     1. `python manage.py makemigrations`
-    1. `python manage.py migrate`
-1. start the application with `python manage.py runserver`
-1. verify the application is running by visiting `localhost:8000`
-1. (optional) create a superuser by running: `python manage.py createsuperuser`
+    2. `python manage.py migrate`
+8. start the application with `python manage.py runserver`
+9. verify the application is running by visiting `localhost:8000`
+10. (optional) create a superuser by running: `python manage.py createsuperuser`
+11. (optional) customize the layouts and colour palette in `static/css/style.css`
 
 ## Project Structure
 
@@ -46,7 +68,13 @@ In order to quickly get started with the project follow these steps:
 
 The project is modularized into several apps:
 
-- `products`: Manages product listings and categories
+- `products`: Manages product listings, tags, and categories;
+              You can manage the different models (Products, Categories, Tags, etc) in models.py;
+              views.py allows you to manage the information displayed within the templates;
+              admin.py allows you to configure the backend to administrate the data within the models;
+    -`templates`: Contains the templates used to display the views; product.html displays all the products sorted by category; product.html displays the selected product details, ratings, user comments and other relevant information
+    -`test`: Contains tests that can be run to validate the models and views;
+-`static`: contains static data such as images and style sheets;
 - `users`: Handles user authentication and registration.
 
 Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
@@ -165,6 +193,26 @@ You can build the container image by running the following command in your termi
 # use -t to provide a tag together with the image name
 # -> baby-tools-world is the image name, 'local' is the tag
 docker build -t baby-tools-world:local .
+```
+
+#### Pushing an image to a VM
+
+You can push an image to a VM by running the following command in your terminal:
+
+Start by pushing your image:
+
+```bash
+# youruser is your docker username
+# -> myimage is the image name, 'latest' is the tag
+docker push youruser/myimage:latest
+```
+
+then on the server:
+
+```bash
+# youruser is your docker username
+# -> myimage is the image name, 'latest' is the tag
+docker pull youruser/myimage:latest
 ```
 
 #### Run a container

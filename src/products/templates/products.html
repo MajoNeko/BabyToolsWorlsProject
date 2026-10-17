@@ -1,14 +1,14 @@
 {% extends '_dashboard.html' %}
 {% block content %}
-<div class="row ml-2 mt-3">
+<div class="row ms-2 mt-3 me-2">
   <div class="col-2">
-    <div class="list-group">
+    <div class="list-group bt-sidebar">
       <a href="/" class="list-group-item list-group-item-action active" aria-current="true">
         Categories
       </a>
       {% for category in categories %}
       <a href="{% url 'products_by_category' category.slug %}" class="list-group-item list-group-item-action">
-        {{category.name}}
+        {{ category.name }}
       </a>
       {% endfor %}
     </div>
@@ -17,21 +17,20 @@
     <div class="row">
       {% for product in products %}
 
-      <div class="card  mt-3" style="width: 18rem; margin: 0 0.25rem;">
+      <div class="card product-card">
         {% if product.image %}
-        {% load static %}
-        <img src="{{ product.image.url }}" class="card-img-top" width="300" height="230">
+        <img src="{{ product.image.url }}" class="card-img-top product-img" alt="{{ product.name }}">
         {% else %}
-        <img src="https://placehold.co/300x200" class="card-img-top" width="300" height="230">
+        <img src="https://placehold.co/300x230/ece6dd/7a736b" class="card-img-top product-img" alt="No image available">
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">
             <a href="{% url 'product_detail' product.category.slug product.id %}" title="{{ product.name }}">
-              {{ product.name | truncatechars:20 }}
+              {{ product.name|truncatechars:20 }}
             </a>
           </h5>
           <div class="mb-1 text-muted">
-            {{product.price}} &euro;
+            {{ product.price }} &euro;
           </div>
           <div class="mb-2">
             {% if product.total_ratings > 0 %}
@@ -39,9 +38,9 @@
                 {% with product.avg_rating|floatformat:1 as avg %}
                   {% for i in "12345" %}
                     {% if forloop.counter <= product.avg_rating %}
-                      <span class="text-warning">&#9733;</span>
+                      <span class="star-on">&#9733;</span>
                     {% else %}
-                      <span class="text-secondary">&#9734;</span>
+                      <span class="star-off">&#9733;</span>
                     {% endif %}
                   {% endfor %}
                   <strong>{{ avg }}</strong>
@@ -52,11 +51,11 @@
             {% endif %}
           </div>
           <p class="card-text">
-            {{product.description | truncatechars:80}}
+            {{ product.description|truncatechars:80 }}
           </p>
         </div>
-        <div class="card-footer text-muted text-center">
-          <a href="{% url 'product_detail' product.category.slug product.id %}" class="btn btn-primary">
+        <div class="card-footer text-center">
+          <a href="{% url 'product_detail' product.category.slug product.id %}" class="btn btn-blue">
             See Details
           </a>
         </div>

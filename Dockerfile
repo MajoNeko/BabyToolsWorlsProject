@@ -20,3 +20,5 @@ WORKDIR /app/src
 
 EXPOSE $APP_PORT
 ENTRYPOINT [ "/bin/sh", "-c", "/app/entrypoint.sh" ]
+
+CMD ["gunicorn", "btw_app.wsgi:application", "--bind", "0.0.0.0:8000"]

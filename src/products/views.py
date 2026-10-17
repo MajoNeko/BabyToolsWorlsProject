@@ -1,12 +1,23 @@
 from django.contrib import messages
 from django.db.models import Avg, Count
+from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm
 from .models import Category, Comment, Product
 
 
-def product_list(request, category_slug=None):
+def product_list(request: HttpRequest, category_slug: str = None):
+    """
+    Returns the available categories and products
+
+    Parameters:
+        request(HttpRequest):The type of request performed on the product details (eg: GET, POST...)
+        category_slug(slug): The category slug the product belongs to
+
+    Returns:
+        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object
+    """
     categories = Category.objects.all()
     products = Product.objects.select_related("category").annotate(
         avg_rating=Avg("comments__rating"), total_ratings=Count("comments")
@@ -16,7 +27,18 @@ def product_list(request, category_slug=None):
     return render(request, "products.html", {"categories": categories, "products": products})
 
 
-def product_detail(request, category_slug, pk):
+def product_detail(request: HttpRequest, category_slug: str, pk: int):
+    """
+    Returns the details of a product, including category, description, image, tags, user comments and ratings
+
+    Parameters:
+        request(HttpRequest):The type of request performed on the product details (eg: GET, POST...)
+        category_slug(str): The category slug the product belongs to
+        pk(int): The primary key associated with the product
+
+    Returns:
+        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object
+    """
     product = get_object_or_404(
         Product.objects.select_related("category").annotate(
             avg_rating=Avg("comments__rating"), total_ratings=Count("comments")
@@ -31,6 +53,9 @@ def product_detail(request, category_slug, pk):
         .annotate(avg_rating=Avg("comments__rating"), total_ratings=Count("comments"))
         .order_by("-avg_rating", "-total_ratings", "name")[:8]
     )
+
+    # get associated product tags ordered by name
+    tags = product.tag.order_by("name")
 
     comments = product.comments.select_related("user").order_by("-created_at")
 
@@ -59,16 +84,12 @@ def product_detail(request, category_slug, pk):
 
             return redirect("product_detail", category_slug=category_slug, pk=product.pk)
     else:
-        # Pre-fill form for authenticated user with existing comment (if any)
+        # Clear the form after comment and rating submssion
         initial = {}
-        if request.user.is_authenticated:
-            existing = product.comments.filter(user=request.user).first()
-            if existing:
-                initial = {"rating": existing.rating, "text": existing.text}
         form = CommentForm(initial=initial)
 
     return render(
         request,
         "product.html",
-        {"product": product, "comments": comments, "related_products": related_products, "form": form},
+        {"product": product, "tags": tags, "comments": comments, "related_products": related_products, "form": form},
     )
