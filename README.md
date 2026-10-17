@@ -19,21 +19,23 @@ In order to seamlessly interact with the repository and the software it contains
 In order to quickly get started with the project follow these steps:
 
 1. clone the repository
-1. nagivate to the repository
-1. (optional) create a virtual environment with `python -m venv my-venv`
+2. nagivate to the repository
+3. (optional) create a virtual environment with `python -m venv my-venv`
     1. activate the virtual environment:
         - on Windows run: `my-venv/Scripts/activate`
         - on MacOS/Linux run: `source my-venv/bin/activate`
-1. install the project dependencies with `pip install -r requirements.txt`
-1. configure required application environment variables
+4. install the project dependencies with `pip install -r requirements.txt`
+5. configure required application environment variables
     - `cp example.env .env`
-1. go to the `src` directory via `cd src`
-1. prepare the database (create and apply migrations)
+6. go to the `src` directory via `cd src`
+7. prepare the database (create and apply migrations)
     1. `python manage.py makemigrations`
-    1. `python manage.py migrate`
-1. start the application with `python manage.py runserver`
-1. verify the application is running by visiting `localhost:8000`
-1. (optional) create a superuser by running: `python manage.py createsuperuser`
+    2. `python manage.py migrate`
+8. start the application with `python manage.py runserver`
+9. verify the application is running by visiting `localhost:8000`
+10. (optional) create a superuser by running: `python manage.py createsuperuser`
+11. (optional) customize the layouts and colour palette in `static/css/style.css`
+
 
 ## Project Structure
 
