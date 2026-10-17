@@ -16,7 +16,7 @@ def product_list(request: HttpRequest, category_slug: str = None):
         category_slug(slug): The category slug the product belongs to
 
     Returns:
-        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object.
+        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object
     """
     categories = Category.objects.all()
     products = Product.objects.select_related("category").annotate(
@@ -37,7 +37,7 @@ def product_detail(request: HttpRequest, category_slug: str, pk: int):
         pk(int): The primary key associated with the product
 
     Returns:
-        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object.
+        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object
     """
     product = get_object_or_404(
         Product.objects.select_related("category").annotate(
