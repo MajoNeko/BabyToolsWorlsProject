@@ -6,6 +6,26 @@ The project was developed for educational purposes only and therefore has no cla
 > [!NOTE]
 > This project assumes you already know the python programming language
 
+## Table of Contents
+
+- [Introduction](#Baby-Tools-World)
+- [Prerequisites](#Prerequisites)
+- [Quickstart](#Quickstart)
+- [Project Structure](#Project-Structure)
+- [Apps Overview](#Apps-Overview)
+- [Usage](#Usage)
+    - [Configuration](#Configuration)
+    - [Running the linting tools](#Running-the-linting-tools)
+        - [When to run this](#When-to-run-this)
+    - [Configuration](#Configuration)
+- [Testing](#Testing)
+    - [Running tests](#Running-tests)
+- [Running with a WSGI Server](#Running-with-a-WSGI-Server)
+- [Seeding the application with data](#Seeding-the-application-with-data)
+- [Containerization](#Containerization)
+    - [Build an image](#Build-an-image)
+    - [Run a container](#Run-a-container)
+
 ## Prerequisites
 
 In order to seamlessly interact with the repository and the software it contains you need the following tools preinstalled:
@@ -47,7 +67,13 @@ In order to quickly get started with the project follow these steps:
 
 The project is modularized into several apps:
 
-- `products`: Manages product listings, tags, and categories
+- `products`: Manages product listings, tags, and categories;
+              You can manage the different models (Products, Categories, Tags, etc) in models.py; 
+              views.py allows you to manage the information displayed within the templates; 
+              admin.py allows you to configure the backend to administrate the data within the models;
+    -`templates`: Contains the templates used to display the views; product.html displays all the products sorted by category; product.html displays the selected product details, ratings, user comments and other relevant information
+    -`test`: Contains tests that can be run to validate the models and views;
+    -`static`: contains static data such as images and style sheets;
 - `users`: Handles user authentication and registration.
 
 Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
@@ -166,6 +192,23 @@ You can build the container image by running the following command in your termi
 # use -t to provide a tag together with the image name
 # -> baby-tools-world is the image name, 'local' is the tag
 docker build -t baby-tools-world:local .
+```
+
+#### Pushing an image to a VM
+
+You can push an image to a VM by running the following command in your terminal:
+
+    Start by pushing your image:
+```bash
+# youruser is your docker username
+# -> myimage is the image name, 'latest' is the tag
+docker push youruser/myimage:latest
+```
+    then on the server:
+```bash
+# youruser is your docker username
+# -> myimage is the image name, 'latest' is the tag
+docker pull youruser/myimage:latest
 ```
 
 #### Run a container
