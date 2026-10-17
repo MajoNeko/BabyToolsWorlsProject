@@ -24,5 +24,6 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    """ Add Tag administration to the admin panel, allow admin to create, edit, and delete tags """
+    """Add Tag administration to the admin panel, allow admin to create, edit, and delete tags"""
+
     list_display = ("name", "created_at")
