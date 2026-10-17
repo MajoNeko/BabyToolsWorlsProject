@@ -36,7 +36,6 @@ In order to quickly get started with the project follow these steps:
 10. (optional) create a superuser by running: `python manage.py createsuperuser`
 11. (optional) customize the layouts and colour palette in `static/css/style.css`
 
-
 ## Project Structure
 
 - `.gitlab`: GitLab specific project files
