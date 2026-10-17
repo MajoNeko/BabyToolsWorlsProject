@@ -1,22 +1,22 @@
 from django.contrib import messages
 from django.db.models import Avg, Count
+from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpRequest, HttpResponse
 
 from .forms import CommentForm
 from .models import Category, Comment, Product
 
 
-def product_list(request: HttpRequest, category_slug: str=None):
+def product_list(request: HttpRequest, category_slug: str = None):
     """
-            Returns the available categories and products
-    
-            Parameters:
-                request(HttpRequest):The type of request performed on the product details (eg: GET, POST...)
-                category_slug(slug): The category slug the product belongs to
-    
-            Returns:
-                response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object to be processed and displayed on the products.html page containing the categories and products.
+    Returns the available categories and products
+
+    Parameters:
+        request(HttpRequest):The type of request performed on the product details (eg: GET, POST...)
+        category_slug(slug): The category slug the product belongs to
+
+    Returns:
+        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object.
     """
     categories = Category.objects.all()
     products = Product.objects.select_related("category").annotate(
@@ -29,15 +29,15 @@ def product_list(request: HttpRequest, category_slug: str=None):
 
 def product_detail(request: HttpRequest, category_slug: str, pk: int):
     """
-        Returns the details of a product, including category, product description, image, tags and related user comments and ratings
+    Returns the details of a product, including category, description, image, tags, user comments and ratings
 
-        Parameters:
-            request(HttpRequest):The type of request performed on the product details (eg: GET, POST...)
-            category_slug(str): The category slug the product belongs to
-            pk(int): The primary key associated with the product
+    Parameters:
+        request(HttpRequest):The type of request performed on the product details (eg: GET, POST...)
+        category_slug(str): The category slug the product belongs to
+        pk(int): The primary key associated with the product
 
-        Returns:
-            response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object to be processed and displayed on the product.html page containing the product details, tags, related products, user comments and ratings, request type and form information.
+    Returns:
+        response(HttpResponse): an HTTPResponse filled with the HTTPRequest type, the template name and a content object.
     """
     product = get_object_or_404(
         Product.objects.select_related("category").annotate(
@@ -86,7 +86,7 @@ def product_detail(request: HttpRequest, category_slug: str, pk: int):
     else:
         # Clear the form after comment and rating submssion
         initial = {}
-        form = CommentForm(initial=initial) 
+        form = CommentForm(initial=initial)
 
     return render(
         request,

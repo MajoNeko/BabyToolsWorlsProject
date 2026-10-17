@@ -25,7 +25,7 @@ class ProductTestCase(TestCase):
             description=self.test_product_description,
             price=self.test_product_price,
             category=self.test_category,
-            tag=self.test_tag
+            tag=self.test_tag,
         )
         product.full_clean()
         self.assertEqual(Product.objects.count(), 1)
@@ -46,7 +46,7 @@ class ProductTestCase(TestCase):
             name=self.test_product_name,
             description=self.test_product_description,
             price=self.test_product_price,
-            category=self.test_category
+            category=self.test_category,
         )
         product.full_clean()
         self.assertEqual(Product.objects.count(), 1)
@@ -74,7 +74,7 @@ class ProductTestCase(TestCase):
     def test_product_tag_relationship(self):
         # Test the relationship between product and tag
         product = Product.objects.create(
-            name=self.test_product_name, price=self.test_product_price, category=self.test_category, tag=self.test_tag 
+            name=self.test_product_name, price=self.test_product_price, category=self.test_category, tag=self.test_tag
         )
         product.full_clean()
         self.assertEqual(product.tag.name, self.test_tag.name)
