@@ -69,8 +69,8 @@ In order to quickly get started with the project follow these steps:
 The project is modularized into several apps:
 
 - `products`: Manages product listings, tags, and categories;
-              You can manage the different models (Products, Categories, Tags, etc) in models.py; 
-              views.py allows you to manage the information displayed within the templates; 
+              You can manage the different models (Products, Categories, Tags, etc) in models.py;
+              views.py allows you to manage the information displayed within the templates;
               admin.py allows you to configure the backend to administrate the data within the models;
     -`templates`: Contains the templates used to display the views; product.html displays all the products sorted by category; product.html displays the selected product details, ratings, user comments and other relevant information
     -`test`: Contains tests that can be run to validate the models and views;
@@ -199,13 +199,15 @@ docker build -t baby-tools-world:local .
 
 You can push an image to a VM by running the following command in your terminal:
 
-    Start by pushing your image:
+Start by pushing your image:
+
 ```bash
 # youruser is your docker username
 # -> myimage is the image name, 'latest' is the tag
 docker push youruser/myimage:latest
 ```
-    then on the server:
+then on the server:
+
 ```bash
 # youruser is your docker username
 # -> myimage is the image name, 'latest' is the tag
