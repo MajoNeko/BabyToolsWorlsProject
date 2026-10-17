@@ -206,6 +206,7 @@ Start by pushing your image:
 # -> myimage is the image name, 'latest' is the tag
 docker push youruser/myimage:latest
 ```
+
 then on the server:
 
 ```bash
