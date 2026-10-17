@@ -73,7 +73,7 @@ The project is modularized into several apps:
               admin.py allows you to configure the backend to administrate the data within the models;
     -`templates`: Contains the templates used to display the views; product.html displays all the products sorted by category; product.html displays the selected product details, ratings, user comments and other relevant information
     -`test`: Contains tests that can be run to validate the models and views;
-    -`static`: contains static data such as images and style sheets;
+-`static`: contains static data such as images and style sheets;
 - `users`: Handles user authentication and registration.
 
 Each app has its own `models.py`, `views.py`, `urls.py`, and `admin.py` files to encapsulate its functionality.
